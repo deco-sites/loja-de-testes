@@ -8,12 +8,20 @@ import * as $0 from "./routes/[...catchall].tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/_middleware.ts";
 import * as $3 from "./routes/index.tsx";
-import * as $$0 from "./islands/LiveControls.tsx";
-import * as $$$0 from "./sections/GetStarted.tsx";
-import * as $$$1 from "./sections/Head.tsx";
-import * as $$$2 from "./sections/Markdown.tsx";
-import * as $$$3 from "./sections/QuillText.tsx";
-import * as $$$$0 from "./functions/LoadGitHubRaw.ts";
+import * as $4 from "./routes/orders/[id]/confirmation-success.tsx";
+import * as $5 from "./routes/orders/[id]/confirmation.tsx";
+import * as $6 from "./routes/orders/[id]/delivery-info.tsx";
+import * as $7 from "./routes/orders/[id]/index.tsx";
+import * as $8 from "./routes/orders/index.tsx";
+import * as $$0 from "./islands/AddToCart.tsx";
+import * as $$1 from "./islands/CartButton.tsx";
+import * as $$2 from "./islands/CartModal.tsx";
+import * as $$3 from "./islands/Header.tsx";
+import * as $$4 from "./islands/LiveControls.tsx";
+import * as $$$0 from "./sections/Head.tsx";
+import * as $$$1 from "./sections/Header.tsx";
+import * as $$$2 from "./sections/ProductList.tsx";
+import * as $$$$0 from "./functions/loadProducts.ts";
 
 const manifest: DecoManifest = {
   routes: {
@@ -21,33 +29,26 @@ const manifest: DecoManifest = {
     "./routes/_app.tsx": $1,
     "./routes/_middleware.ts": $2,
     "./routes/index.tsx": $3,
+    "./routes/orders/[id]/confirmation-success.tsx": $4,
+    "./routes/orders/[id]/confirmation.tsx": $5,
+    "./routes/orders/[id]/delivery-info.tsx": $6,
+    "./routes/orders/[id]/index.tsx": $7,
+    "./routes/orders/index.tsx": $8,
   },
-  islands: { "./islands/LiveControls.tsx": $$0 },
+  islands: {
+    "./islands/AddToCart.tsx": $$0,
+    "./islands/CartButton.tsx": $$1,
+    "./islands/CartModal.tsx": $$2,
+    "./islands/Header.tsx": $$3,
+    "./islands/LiveControls.tsx": $$4,
+  },
   sections: {
-    "./sections/GetStarted.tsx": $$$0,
-    "./sections/Head.tsx": $$$1,
-    "./sections/Markdown.tsx": $$$2,
-    "./sections/QuillText.tsx": $$$3,
+    "./sections/Head.tsx": $$$0,
+    "./sections/Header.tsx": $$$1,
+    "./sections/ProductList.tsx": $$$2,
   },
-  functions: { "./functions/LoadGitHubRaw.ts": $$$$0 },
+  functions: { "./functions/loadProducts.ts": $$$$0 },
   schemas: {
-    "./sections/GetStarted.tsx": {
-      "inputSchema": {
-        "title": " Get Started",
-        "type": "object",
-        "properties": {
-          "enableInspectVSCode": {
-            "type": [
-              "boolean",
-              "null",
-            ],
-            "title": "Enable Inspect V S Code",
-          },
-        },
-        "required": [],
-      },
-      "outputSchema": null,
-    },
     "./sections/Head.tsx": {
       "inputSchema": {
         "title": " Head",
@@ -97,72 +98,53 @@ const manifest: DecoManifest = {
       },
       "outputSchema": null,
     },
-    "./sections/Markdown.tsx": {
+    "./sections/Header.tsx": {
+      "inputSchema": null,
+      "outputSchema": null,
+    },
+    "./sections/ProductList.tsx": {
       "inputSchema": {
-        "title": " Markdown",
+        "title": " Product List",
         "type": "object",
         "properties": {
-          "text": {
+          "title": {
             "type": "string",
-            "title": "Text",
+            "title": "Title",
+          },
+          "products": {
+            "$id": "43f72da89de4abd29798cff8c0d99fafda6ce155",
+            "format": "live-function",
+            "type": "string",
+            "title": "Products",
           },
         },
         "required": [
-          "text",
+          "title",
+          "products",
         ],
       },
       "outputSchema": null,
     },
-    "./sections/QuillText.tsx": {
+    "./functions/loadProducts.ts": {
       "inputSchema": {
-        "title": " Quill Text",
+        "title": "Load Products",
         "type": "object",
         "properties": {
-          "html": {
-            "format": "html",
-            "type": "string",
-            "title": "Html",
+          "count": {
+            "type": [
+              "number",
+              "null",
+            ],
+            "title": "Count",
           },
         },
-        "required": [
-          "html",
-        ],
-      },
-      "outputSchema": null,
-    },
-    "./functions/LoadGitHubRaw.ts": {
-      "inputSchema": {
-        "title": " Load Git Hub Raw",
-        "type": "object",
-        "properties": {
-          "repo": {
-            "type": "string",
-            "title": "Repo",
-            "description": "Complete user/repo format",
-          },
-          "branch": {
-            "type": "string",
-            "title": "Branch",
-            "description": "Branch",
-          },
-          "path": {
-            "type": "string",
-            "title": "Path",
-            "description":
-              "Path to fetch, or leave blank and add :path route param.",
-          },
-        },
-        "required": [
-          "repo",
-          "branch",
-          "path",
-        ],
+        "required": [],
       },
       "outputSchema": {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "5b1cd5713a375e18bb93e9635b8a2dc5fc2672cf",
+            "$id": "2a74bc5a512c10d33225d6243b7b82dd992aaeb6",
           },
         },
         "additionalProperties": true,
